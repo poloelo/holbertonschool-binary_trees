@@ -4,7 +4,7 @@
  * binary_tree_sibling - Trouve le frère d'un nœud
  * @node: Pointeur vers le nœud dont on cherche le frère
  *
- * Return: Pointeur vers le nœud frère, NULL si pas de frère ou node est NULL
+ * Return: Pointeur vers le nœud frère
  */
 binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 {
