@@ -1,47 +1,50 @@
 #include "binary_trees.h"
 
-
 /**
- * binary_tree_height - Measures the height of a binary tree
- * @tree: Pointer to the root node
+ * binary_tree_height_balance - Mesure la hauteur d'un arbre binaire
+ * @tree: Pointeur vers le nœud racine
  *
- * Return: Height of the tree, 0 if tree is NULL or leaf
+ * Return: Hauteur de l'arbre, 0 si tree est NULL
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+size_t binary_tree_height_balance(const binary_tree_t *tree)
 {
-size_t left_h = 0, right_h = 0;
+	size_t left_height = 0;
+	size_t right_height = 0;
 
-if (tree == NULL)
-return (0);
+	if (tree == NULL)
+		return (0);
 
-/* Calculer la hauteur des sous-arbres gauche et droit */
-if (tree->left)
-left_h = 1 + binary_tree_height(tree->left);
-if (tree->right)
-right_h = 1 + binary_tree_height(tree->right);
+	if (tree->left)
+		left_height = 1 + binary_tree_height_balance(tree->left);
 
-/* Retourner la plus grande hauteur */
-return (left_h > right_h ? left_h : right_h);
+	if (tree->right)
+		right_height = 1 + binary_tree_height_balance(tree->right);
+
+	if (left_height > right_height)
+		return (left_height);
+
+	return (right_height);
 }
 
-
 /**
- * binary_tree_balance - Measures the balance factor
- * @tree: Pointer to root node
+ * binary_tree_balance - Mesure le facteur d'équilibre d'un arbre binaire
+ * @tree: Pointeur vers le nœud racine de l'arbre
  *
- * Return: Balance factor (left height - right height)
+ * Return: Facteur d'équilibre, 0 si tree est NULL
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
-int left_h = 0, right_h = 0;
+	int left_height = 0;
+	int right_height = 0;
 
-if (tree == NULL)
-return (0);
+	if (tree == NULL)
+		return (0);
 
-if (tree->left)
-left_h = (int)binary_tree_height(tree->left);
-if (tree->right)
-right_h = (int)binary_tree_height(tree->right);
+	if (tree->left)
+		left_height = 1 + binary_tree_height_balance(tree->left);
 
-return (left_h - right_h);
+	if (tree->right)
+		right_height = 1 + binary_tree_height_balance(tree->right);
+
+	return (left_height - right_height);
 }
